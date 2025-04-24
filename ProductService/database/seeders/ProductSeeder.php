@@ -16,17 +16,23 @@ class ProductSeeder extends Seeder
     Product::create([
         'name' => 'Espresso',
         'description' => 'Kopi hitam pekat dengan rasa kuat.',
-        'price' => 20000
+        'price' => 20000,
+        'image' => 'images/kopi.jpg'
+        
     ]);
     Product::create([
         'name' => 'Latte',
         'description' => 'Campuran espresso dan susu.',
-        'price' => 25000
+        'price' => 25000,
+        'image' => 'images/kopi.jpg'
+        
     ]);
     Product::create([
         'name' => 'Iced Aren Latte',
         'description' => 'Perpaduan kopi dengan gula aren yang nikmat.',
         'price' => 25000,
+        'image' => 'images/kopi.jpg'
+    
     ]);
 }
 }

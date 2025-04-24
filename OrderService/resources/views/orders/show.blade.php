@@ -1,16 +1,34 @@
-<!-- resources/views/orders/show.blade.php -->
 @extends('layouts.app')
 
-@section('title', 'Detail Pesanan')
-
 @section('content')
-    <h2>Detail Pesanan</h2>
+<h2 class="mb-4">📋 Daftar Pesanan</h2>
 
-    <p><strong>Nama Pengguna:</strong> {{ $order->name }}</p>
-    <p><strong>Nomor Meja:</strong> {{ $order->table_number }}</p>
-    <p><strong>Produk Kopi:</strong> {{ $product['name'] }}</p>
-    <p><strong>Kuantitas:</strong> {{ $order->quantity }}</p>
-    <p><strong>Total Harga:</strong> Rp {{ number_format($order->total_price, 2) }}</p>
+@if (session('success'))
+<div class="alert alert-success">{{ session('success') }}</div>
+@endif
 
-    <a href="{{ route('orders.create') }}">Pesan Lagi</a>
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Nama Customer</th>
+            <th>Produk</th>
+            <th>Harga</th>
+            <th>Jumlah</th>
+            <th>Total</th>
+            <th>Waktu</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($orders as $order)
+        <tr>
+            <td>{{ $order->customer_name }}</td>
+            <td>{{ $order->product_name }}</td>
+            <td>Rp{{ number_format($order->price, 0, ',', '.') }}</td>
+            <td>{{ $order->quantity }}</td>
+            <td>Rp{{ number_format($order->total_price, 0, ',', '.') }}</td>
+            <td>{{ $order->created_at->format('d M Y H:i') }}</td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
 @endsection

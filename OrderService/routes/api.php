@@ -1,5 +1,12 @@
 <?php
 
-use App\Http\Controllers\OrderController;
+use App\Models\Order;
+use Illuminate\Http\Request;
 
-Route::get('orders/product/{productId}', [OrderController::class, 'getByProduct']);
+Route::get('/orders', function () {
+    return response()->json(Order::latest()->get());
+});
+
+Route::get('/orders/{id}', function ($id) {
+    return response()->json(Order::findOrFail($id));
+});

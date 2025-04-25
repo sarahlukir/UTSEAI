@@ -107,7 +107,7 @@
         <p class="lead">Tempat terbaik untuk menikmati kopi segar dengan suasana yang nyaman. Rasakan kelezatan kopi pilihan dengan sentuhan kasih.</p>
         
         <!-- Button to Menu -->
-        <a href="{{route('menu')}}" class="btn btn-primary btn-lg">Lihat Menu</a>
+        <a href="http://localhost:8001/menu" class="btn btn-primary btn-lg">Lihat Menu</a>
     </div>
 </div>
 

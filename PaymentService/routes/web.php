@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentController;
 
 Route::get('/payment/{order_id}', [PaymentController::class, 'showPaymentPage'])->name('payment.page');

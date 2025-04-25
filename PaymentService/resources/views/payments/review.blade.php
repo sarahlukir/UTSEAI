@@ -5,6 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Review - Cafe Coffee</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .bg-coffee-500 {
+    background-color: #6F4E37;
+}
+
+.bg-coffee-600 {
+    background-color: #5D4037;
+}
+
+.bg-coffee-700 {
+    background-color: #4E342E;
+}
+
+.text-coffee-500 {
+    color: #6F4E37;
+}
+
+.text-coffee-600 {
+    color: #5D4037;
+}
+
+.text-coffee-700 {
+    color: #4E342E;
+}
+
+.border-coffee-500 {
+    border-color: #6F4E37;
+}
+
+.hover\:bg-coffee-700:hover {
+    background-color: #4E342E;
+}
+    </style>
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto px-4 py-8">
@@ -32,7 +65,7 @@
                 
                 <div class="mt-8 text-center">
                     <p class="text-gray-600 mb-4">We appreciate your business. Enjoy your coffee!</p>
-                    <a href="/" class="inline-block bg-coffee-600 hover:bg-coffee-700 text-white font-bold py-2 px-6 rounded-md transition duration-300">
+                    <a href="http://localhost:8000/" class="inline-block bg-coffee-600 hover:bg-coffee-700 text-white font-bold py-2 px-6 rounded-md transition duration-300">
                         Back to Home
                     </a>
                 </div>

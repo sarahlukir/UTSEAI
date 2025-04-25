@@ -1,10 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>Pembayaran - Cafe Coffee</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment - Cafe Coffee</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        .bg-coffee-500 {
+    background-color: #6F4E37;
+}
+
+.bg-coffee-600 {
+    background-color: #5D4037;
+}
+
+.bg-coffee-700 {
+    background-color: #4E342E;
+}
+
+.text-coffee-500 {
+    color: #6F4E37;
+}
+
+.text-coffee-600 {
+    color: #5D4037;
+}
+
+.text-coffee-700 {
+    color: #4E342E;
+}
+
+.border-coffee-500 {
+    border-color: #6F4E37;
+}
+
+.hover\:bg-coffee-700:hover {
+    background-color: #4E342E;
+}
+    </style>
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto px-4 py-8">
@@ -16,11 +52,11 @@
             <div class="p-6">
                 <div class="mb-6">
                     <h2 class="text-lg font-semibold mb-2">Order Summary</h2>
-                    <p class="text-gray-600">Order ID: {{ $order->id }}</p>
+                    <p class="text-gray-600">Order ID: {{ $payment->order_id }}</p>
                     <p class="text-gray-600">Total Amount: Rp {{ number_format($payment->amount, 0, ',', '.') }}</p>
                 </div>
                 
-                <form id="paymentForm" action="{{ route('payment.confirm', ['order_id' => $order->id]) }}" method="POST">
+                <form id="paymentForm" action="{{ route('payment.confirm', ['order_id' => $payment->order_id]) }}" method="POST">
                     @csrf
                     <div class="mb-6">
                         <h2 class="text-lg font-semibold mb-4">Select Payment Method</h2>
@@ -30,7 +66,6 @@
                                 <input type="radio" id="gopay" name="payment_method" value="gopay" class="h-4 w-4 text-coffee-600 focus:ring-coffee-500" checked>
                                 <label for="gopay" class="ml-3 block text-gray-700">
                                     <span class="font-medium">GoPay</span>
-                                    <img src="https://via.placeholder.com/80x30?text=GoPay" alt="GoPay" class="h-6 ml-2 inline">
                                 </label>
                             </div>
                             
@@ -38,7 +73,6 @@
                                 <input type="radio" id="ovo" name="payment_method" value="ovo" class="h-4 w-4 text-coffee-600 focus:ring-coffee-500">
                                 <label for="ovo" class="ml-3 block text-gray-700">
                                     <span class="font-medium">OVO</span>
-                                    <img src="https://via.placeholder.com/80x30?text=OVO" alt="OVO" class="h-6 ml-2 inline">
                                 </label>
                             </div>
                             
@@ -58,7 +92,7 @@
                         </div>
                     </div>
                     
-                    <div class="mt-8">
+                    <div class="mt-6">
                         <button type="submit" class="w-full bg-coffee-600 hover:bg-coffee-700 text-white font-bold py-3 px-4 rounded-md transition duration-300">
                             Confirm Payment
                         </button>

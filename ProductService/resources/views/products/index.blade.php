@@ -3,6 +3,8 @@
 @section('content')
 <div class="container py-5">
     <h2 class="text-center fw-bold mb-5">AMERICANO SERIES</h2>
+    <a class="btn btn-success mt-3 href" href="http://localhost:8000/">Dashboard</a>
+    <a class="btn btn-success mt-3 href" href="/riwayat">Lihat Riwayat Pesanan</a>
     <div class="row">
         @foreach($products as $product)
         <div class="col-md-4 mb-4">
@@ -28,9 +30,7 @@
                             <h3 class="fw-bold">{{ $product->name }}</h3>
                             <h4 class="text-danger">Rp{{ number_format($product->price, 0, ',', '.') }}</h4>
                             <p class="text-muted">{{ $product->description }}</p>
-                            <button class="btn btn-success mt-3">
-                                <i class="bi bi-cart3"></i> Pesan Sekarang
-                            </button>
+                            <a class="btn btn-success mt-3" href="http://localhost:8002/orders/{{ $product['id'] }}" >Pesan Sekarang</a>
                         </div>
                     </div>
                 </div>

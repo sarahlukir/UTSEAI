@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Payment;
-use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Http;
+
+
 
 class PaymentController extends Controller
 {
@@ -123,10 +125,10 @@ class PaymentController extends Controller
      */
     public function showPaymentPage($order_id): View
     {
-        $order = Order::findOrFail($order_id); // Pastikan model Order ada
+        $order = Http::get("http://localhost:8002/api/orders/" . $order_id)->json();
         $payment = Payment::firstOrCreate(
-            ['order_id' => $order_id],
-            ['amount' => $order->total, 'payment_method' => 'gopay', 'status' => 'pending']
+            ['order_id' => $order['id']],
+            ['amount' => $order['total_price'], 'payment_method' => 'gopay', 'status' => 'pending']
         );
 
         return view('payments.payment', compact('order', 'payment'));
@@ -155,7 +157,8 @@ class PaymentController extends Controller
      */
     public function showReviewPage($order_id): View
     {
-        $order = Order::findOrFail($order_id);
+        $response = Http::get("http://localhost:8002/api/orders/" . $order_id);
+        $order = $response->object();
         $payment = Payment::where('order_id', $order_id)->firstOrFail();
 
         return view('payments.review', compact('order', 'payment'));

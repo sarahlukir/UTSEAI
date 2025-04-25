@@ -5,14 +5,13 @@
 
 <form method="POST" action="/orders">
     @csrf
+    <input type="hidden" name="product_id" value="{{ $product['id'] }}">
+    <input type="hidden" name="product_name" value="{{ $product['name'] }}">
+    <input type="hidden" name="price" value="{{ $product['price'] }}">
+
     <div class="mb-3">
         <label for="customer_name" class="form-label">Nama Customer</label>
         <input type="text" class="form-control" name="customer_name" required>
-    </div>
-
-    <div class="mb-3">
-        <label for="product_id" class="form-label">ID Produk</label>
-        <input type="number" class="form-control" name="product_id" required>
     </div>
 
     <div class="mb-3">

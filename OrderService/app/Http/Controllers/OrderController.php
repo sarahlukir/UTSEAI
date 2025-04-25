@@ -15,8 +15,15 @@ class OrderController extends Controller
 
     public function show($id)
     {
-        return response()->json(Order::findOrFail($id));
+        $order = Order::find($id);
+
+        if (!$order) {
+            return response()->json(['message' => 'Order not found'], 404);
+        }
+
+        return response()->json($order);
     }
+
 
     public function store(Request $request)
     {
@@ -29,14 +36,15 @@ class OrderController extends Controller
 
         $order = Order::create([
             'customer_name' => $request->customer_name,
-            'product_id' => $product['id'],
-            'product_name' => $product['name'],
-            'price' => $product['price'],
+            'product_id' => $request->product_id,
+            'product_name' => $request->product_name,
+            'price' => $request->price,
             'quantity' => $request->quantity,
-            'total_price' => $product['price'] * $request->quantity,
+            'total_price' => $request->price * $request->quantity,
+
         ]);
-        
-        return redirect('/orders')->with('success', 'Pesanan berhasil dibuat!');
+
+        return redirect("http://localhost:8003/payment/{$order->id}");
 
     }
     public function viewAll()
@@ -45,9 +53,10 @@ class OrderController extends Controller
         return view('orders.show', compact('orders'));
     }
 
-    public function createForm()
+    public function createForm($product_id)
     {
-        return view('orders.create');
+        $product = Http::get("http://localhost:8001/api/products/{$product_id}");
+        return view('orders.create', compact('product'));
     }
 
 }
